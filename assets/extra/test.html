@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <label for="profile-image">Profile Picture</label>
+    <input type="file" name="file" class="inputimg" id="profile-image" accept="image/*">
+    <script type="text/javascript">
+    var config = {
+        apiKey: "AIzaSyBFg7KlfRZ5iZs2XehOSdGYe8SSs0fsnKg",
+        authDomain: "getlost-5e0a8.firebaseapp.com",
+        databaseURL: "https://getlost-5e0a8.firebaseio.com",
+        projectId: "getlost-5e0a8",
+        storageBucket: "getlost-5e0a8.appspot.com",
+        messagingSenderId: "587942997996"
+    };
+    firebase.initializeApp(config);
+
+    $("#profile-image").on("change", function() {
+    	var profilePic = document.getElementById("profile-image").files[0];
+
+    	console.log(profilePic);
+        var storageRef = firebase.storage().ref();
+
+
+        var task = storageRef.child("images").put(profilePic);
+        task.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            function(snapshot) { console.log("state " + snapshot.state) },
+            function(error) { console.log("error " + error) },
+            function() {
+                console.log(task.snapshot.downloadURL);
+            })
+    })
+    </script>
+</body>
+
+</html>
