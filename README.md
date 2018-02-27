@@ -11,7 +11,7 @@ The app uses google maps API with the users location or search location along wi
 
 ## Live Link
 
-https://scotrenz.github.io/ 
+https://scotrenz.github.io/GetLost/
 
 ## Built With
 
